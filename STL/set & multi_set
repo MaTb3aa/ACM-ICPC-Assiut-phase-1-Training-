@@ -1,0 +1,155 @@
+#include <iostream>
+#include<set>
+#include <algorithm>
+#include <unordered_set>
+using namespace std;
+
+
+void setFunction(){
+	 // empty set container
+	    set<int> s1;
+
+	    // insert elements in random order
+	    s1.insert(40);
+	    s1.insert(30);
+	    s1.insert(60);
+	    s1.insert(20);
+	    s1.insert(50);
+
+	    // only one 50 will be added to the set
+	    s1.insert(50);
+	    s1.insert(10);
+
+	    // printing set s1
+	    set<int>::iterator itr;
+	    cout << "\nThe set s1 is : \n";
+	    for (itr = s1.begin();
+	         itr != s1.end(); ++itr)
+	    {
+	        cout << *itr << ",";
+	    }
+	    cout << endl;
+
+	    // assigning the elements from s1 to s2
+	    set<int> s2(s1.begin(), s1.end());
+
+
+	    // remove all elements up to 30 in s2
+
+	    s2.erase(s2.begin(), s2.find(30));
+
+
+	    // remove element with value 50 in s2
+
+
+
+	    // new set declaration
+
+	    // Set with values  // this from greater to lower  ^^
+		set<int, greater<int>> st1 = {6, 10, 5, 1};
+		// st1 = {10, 6, 5, 1}
+
+		// Erasing element value = 1
+		st1.erase(1);
+		// st1 = {10, 6, 5}
+
+		// Erasing the first element
+		st1.erase(s1.begin());
+		// st1 = {6, 5}
+
+	    s2.clear(); // clear all
+
+
+
+
+	    /* search part */
+
+	    // Set with values
+		set<int, greater<int>> st2 = {6, 10, 5, 1};
+		// s1 = {10, 6, 5, 1}
+
+		// The value to be searched
+		int val = 5;
+
+		// Check if the iterator returned is not the ending of set
+		if(st2.find(val) != st2.end())
+			cout<<"The set contains "<<val<<endl;
+		else
+			cout<<"The set does not contains "<<val<<endl;
+
+		// The value to be searched
+		val = 11;
+
+		// Check if the iterator returned is not the ending of set
+		if(st2.find(val) != st2.end())
+			cout<<"The set contains "<<val<<endl;
+		else
+			cout<<"The set does not contains "<<val<<endl;
+
+
+		// you can use count  ..
+		if(st2.count(val))
+			cout<<"The set contains "<<val<<endl;
+		else
+			cout<<"The set does not contains "<<val<<endl;
+
+
+
+
+
+	    ////// please use built in not global lower & upper ^_^
+
+	    // lower bound and upper bound for set s1
+	    cout << "s1.lower_bound(40) : \n" << *s1.lower_bound(40)  << endl;
+
+	    cout << "s1.upper_bound(40) : \n" << *s1.upper_bound(40)  << endl;
+
+	    // lower bound and upper bound for set s2
+	    cout << "s2.lower_bound(40) :\n"  << *s2.lower_bound(40) << endl;
+	    cout << "s2.upper_bound(40) : \n"  << *s2.upper_bound(40) << endl;
+
+
+}
+
+void multiSetFunction(){
+		multiset<int>mst;
+		mst.insert(1);
+		mst.insert(2);
+		mst.insert(3);
+		mst.insert(3);
+		mst.insert(3);
+
+		for(auto t : mst)cout<<t<<" ";
+		cout<<endl;
+		mst.erase(3);
+		for(auto t : mst)cout<<t<<" ";
+
+		////////// O(1) access
+
+
+		unordered_set<int>ust;
+		ust.insert(1);
+		ust.insert(3);
+		ust.insert(5);
+		ust.insert(2);
+		ust.insert(10);
+		ust.insert(10);
+		for(auto t : ust)cout<<t<<" ";
+		cout<<endl; /// what output ?!?!?
+
+
+		////////////////////////////////
+		unordered_multiset<int>umst;
+		umst.insert(1);
+		umst.insert(3);
+		umst.insert(5);
+		umst.insert(2);
+		umst.insert(10);
+		umst.insert(10);
+		for(auto t : umst)cout<<t<<" ";
+		cout<<endl; /// what output ?!?!?
+}
+int main(){
+
+
+}
