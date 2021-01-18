@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	vector<pair<int,int>>v= {
+			{5,4},
+			{9,2},
+			{1,3},
+			{10,0},
+			{1,2},
+			{5,9},
+
+	};
+	sort(v.begin(),v.end());
+	for(auto t :v)cout<<t.first<<" "<<t.second<<endl;// what output ?!
+
+
+	/// what about sort first increasing and second decreasing !!
+
+
+	// cmp ?!
+    return 0;
+}
+
