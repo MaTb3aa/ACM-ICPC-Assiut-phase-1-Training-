@@ -1,0 +1,201 @@
+#include <iostream>
+#include <map>
+#include <unordered_map>
+#include <algorithm>
+using namespace std;
+
+
+
+
+
+void mapFunction(){
+
+	/*
+		     at and [ ]
+			 Both at and [ ] are used for accessing the elements in the map.
+			 The only difference between them is that at throws an exception
+			 if the accessed key is not present in the map, on the other hand operator [ ]
+			 inserts the key in the map if the key is not present already in the map.
+
+	*/
+
+			map<int,string> mp{ {1,"Mahmoud"} , {2,"MaTb3aa"} , {3,"Ali"} };
+
+
+		    cout << mp.at(1) ;  // prints value associated with key 1 ,i.e Mahmoud
+		    cout << mp.at(2) ;  // prints value associated with key 2 ,i.e MaTb3aa
+
+		    /* note that the parameters in the above at() are the keys not the index */
+
+		    cout << mp[3] ; // prints value associated with key 3 , i.e Ali
+
+
+
+		    mp.at(1) = "Ezzat";   // changes the value associated with key 1 to Ezzat
+		    mp[2] = "KOKO";   // changes the value associated with key 2 to KOKO
+
+		    mp[4] = "Hussien";
+		    /* since there is no key with value 4 in the map,
+		        it insert a key-value pair in map with key=4 and value = Hussien */
+
+		     mp.at(5) = "Error404";
+		    /* since there is no key with value 5 in the map ,
+		     it throws an exception  */
+
+		   // finally (at) is not funny :(
+
+
+
+
+
+
+
+
+
+
+		     // empty map container
+		         map<int, int> mp2;
+
+		         // insert elements in random order
+		         mp2.insert(pair<int, int>(1, 40));
+		         mp2.insert(pair<int, int>(2, 30));
+		         mp2.insert(pair<int, int>(3, 60));
+		         mp2.insert(pair<int, int>(4, 20));
+		         mp2.insert(pair<int, int>(5, 50));
+		         mp2.insert(pair<int, int>(6, 50));
+		         mp2.insert(pair<int, int>(7, 10));
+
+		         // printing map mp2
+		         map<int, int>::iterator itr;
+		         // print key - value
+
+		         for (itr = mp2.begin(); itr != mp2.end(); ++itr) {
+		             cout << itr->first << ' ' << itr->second << '\n';
+		         }
+		         cout << endl;
+
+		         // assigning the elements from mp2 to mp3
+		         map<int, int> mp3(mp2.begin(), mp2.end());
+
+
+
+		         // remove all elements up to element with key=3 in mp3
+
+		         mp3.erase(mp3.begin(), mp3.find(3));
+
+
+
+		         // remove all elements with key = 4
+		         int num;
+		         num = mp3.erase(4);
+
+		         //clear
+		         mp3.clear();
+
+
+
+
+				 map<int,int> m{{1,2} , {2,3} , {3,4} };
+
+				 m.insert( pair<int,int> (4,5));
+				 /* inserts a new entry of key = 4 and value = 5 in map m */
+
+				 /* make_pair() can also be used for creating a pair */
+				 m.insert( make_pair(5, 6));
+				 /* inserts a new entry of key = 5 and value = 6 */
+
+
+				 map<int, int>::iterator i , j;
+				 i = m.find(2);    // points to entry having key =2
+				 j = m.find(5);    // points to entry having key =5
+
+
+				 if(m.find(2)!=m.end()){
+					 cout<<"found\n";
+				 }
+				 else cout<<"not found\n";
+
+
+
+
+		         // lower bound and upper bound for  mp2 key = 5
+		         cout << mp2.lower_bound(5)->first << '\n';   // key
+		         cout << "ELEMENT = "<< mp2.lower_bound(5)->second << endl; // val
+
+		         cout << mp2.upper_bound(5)->first << '\n';// key
+		         cout << "ELEMENT = "<< mp2.upper_bound(5)->second << endl;// val
+
+		         /*
+		          * mp2.lower_bound(5) :     KEY = 5        ELEMENT = 50
+					mp2.upper_bound(5) :     KEY = 6        ELEMENT = 50
+		          */
+
+
+}
+
+
+void unordered_mapFunction(){
+		// Declaring umap to be of <string, int> type
+	    // key will be of string type and mapped value will
+	    // be of double type
+	    unordered_map<string, int> umap;
+
+	    // inserting values by using [] operator
+	    umap["Ayman"] = 10;
+	    umap["hawary"] = 20;
+	    umap["mosta7il"] = 30;
+
+	    // Traversing an unordered map
+	    for (auto x : umap)
+	      cout << x.first << " " << x.second << endl;
+
+
+
+
+
+	    	// Declaring umap to be of <string, double> type
+	        // key will be of string type and mapped value will
+	        // be of double type
+	        unordered_map<string, double> umap2;
+
+	        // inserting values by using [] operator
+	        umap2["PI"] = 3.14;
+	        umap2["root2"] = 1.414;
+	        umap2["root3"] = 1.732;
+	        umap2["log10"] = 2.302;
+	        umap2["loge"] = 1.0;
+
+	        // inserting value by insert function
+	        umap2.insert(make_pair("e", 2.718));
+
+	        string key = "PI";
+
+	        // If key not found in map iterator to end is returned
+	        if (umap2.find(key) == umap2.end())
+	            cout << key << " not found\n\n";
+
+	        // If key found then iterator to that key is returned
+	        else
+	            cout << "Found " << key << "\n\n";
+
+	        key = "lambda";
+	        if (umap2.find(key) == umap2.end())
+	            cout << key << " not found\n";
+	        else
+	            cout << "Found " << key << endl;
+
+
+
+	        //    iterating over all value of umap
+	        unordered_map<string, double>:: iterator itr;
+	        cout << "\nAll Elements : \n";
+	        for (itr = umap.begin(); itr != umap.end(); itr++)
+
+	            cout << itr->first << "  " << itr->second << endl;
+
+}
+int main(){
+
+
+
+}
