@@ -2,6 +2,52 @@
 using namespace std;
 int arr[200005];
 
+
+
+
+
+
+
+void merge1 (int l,int r,int md){
+	int i=l,j=md+1;
+	vector<int>v;
+
+	while(i<=md&&j<=r){
+		if(arr[i]<=arr[j])v.push_back(arr[i++]);
+		else {
+			v.push_back(arr[j++]);
+		}
+	}
+	while(i<=md)v.push_back(arr[i++]);
+	while(j<=r)v.push_back(arr[j++]);
+	for (int i = r; i >=l;--i) {
+		arr[i]=v.back();v.pop_back();
+	}
+}
+void mergeSort1(int l,int r){
+	int md=(l+r)/2;
+	if(r-l<1)return ;
+	mergeSort1(l,md);
+	mergeSort1(md+1,r);
+	merge1(l,r,md);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+										/***inversion !! ***/
+
+
+
 long long merge (int l,int r,int md){
 	int i=l,j=md+1;
 	long long invc=0;
@@ -56,9 +102,14 @@ int main()
 		for (int i = 0; i < n; ++i) {
 			cin>>arr[i];
 		}
+		mergeSort1(0,n-1);
+		for (int i = 0; i < n; ++i) cout<<arr[i]<<" ";
+
+
+
+		// inversion count ^^
 		cout<<mergeSort(0,n-1)<<endl;
 	}
 
     return 0;
 }
-
