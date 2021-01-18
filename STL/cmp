@@ -1,6 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+struct node{
+    int a,b;
+    bool operator < (const node & other) const {
+        if(a==other.a)return b>other.b;
+    	return a < other.a;
+    }
+
+};
+
+
+bool cmp(pair<int,int>a,pair<int,int>b){
+	if(a.first==b.first)return a.second>b.second;
+	return a.first<b.first;
+}
+
 int main()
 {
 	vector<pair<int,int>>v= {
@@ -12,7 +27,7 @@ int main()
 			{5,9},
 
 	};
-	sort(v.begin(),v.end());
+	sort(v.begin(),v.end(),cmp);
 	for(auto t :v)cout<<t.first<<" "<<t.second<<endl;// what output ?!
 
 
